@@ -1,0 +1,1069 @@
+[
+  {
+    "rank": "Scout",
+    "req_id": "SC-1",
+    "title": "Ideals: Oath, Law, Motto, Slogan, Pledge",
+    "detail": "Recite the Scout Oath, Scout Law, Scout Motto, Scout Slogan, and the Pledge of Allegiance from memory; explain their meaning in your own words.",
+    "category": "Ideals",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Scout-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Scout",
+    "req_id": "SC-2",
+    "title": "Scout Sign, Salute, Handshake",
+    "detail": "Demonstrate the Scout sign, salute, and handshake and explain when each is used.",
+    "category": "Ideals",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Scout-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Scout",
+    "req_id": "SC-3",
+    "title": "Troop & Advancement Basics",
+    "detail": "After attending at least one troop meeting, explain youth leadership in the troop, the four steps of advancement, the Scout ranks and how they are earned, and how merit badges are earned.",
+    "category": "Program",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Scout-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Scout",
+    "req_id": "SC-4",
+    "title": "Patrol Method",
+    "detail": "Explain the patrol method and describe the patrol types used in your troop.",
+    "category": "Program",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Scout-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Scout",
+    "req_id": "SC-5",
+    "title": "Knots & Rope Care",
+    "detail": "Tie a square knot, two half-hitches, and a taut-line hitch; explain their uses. Show how to whip or fuse the ends of a rope.",
+    "category": "Outdoor Skills",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Scout-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Scout",
+    "req_id": "SC-6",
+    "title": "Pocketknife Safety",
+    "detail": "Explain rules for safe handling, sharpening, passing, opening/closing, and storage of a pocketknife.",
+    "category": "Outdoor Skills",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Scout-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Scout",
+    "req_id": "SC-7",
+    "title": "Personal Safety Awareness (with parent/guardian)",
+    "detail": "With a parent/guardian, complete the exercises in 'How to Protect Your Children From Child Abuse: A Parent’s Guide' and view the Personal Safety Awareness videos (with permission).",
+    "category": "Safety",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Scout-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "requires_parent_guardian": true
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Scout",
+    "req_id": "SC-8",
+    "title": "Scoutmaster Conference",
+    "detail": "Participate in a Scoutmaster conference while working on Scout rank. (Not a retest.)",
+    "category": "Conferences & Reviews",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Scout-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {
+      "conference_required": true,
+      "bor_required": false
+    }
+  },
+  {
+    "rank": "Tenderfoot",
+    "req_id": "TF-1",
+    "title": "Camping Preparation & Ethics",
+    "detail": "a) Present yourself prepared for an overnight campout with personal and camping gear; demonstrate packing/carrying. b) On a patrol/troop campout, spend at least one night in a tent you helped pitch. c) Explain how you lived the Outdoor Code and Leave No Trace on outings.",
+    "category": "Camping",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Tenderfoot-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Tenderfoot",
+    "req_id": "TF-2",
+    "title": "Cooking & Cleanup",
+    "detail": "Assist in preparing one meal on a campout and explain shared meal responsibilities; demonstrate safe dishwashing; explain the importance of eating together as a patrol.",
+    "category": "Cooking",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Tenderfoot-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Tenderfoot",
+    "req_id": "TF-3",
+    "title": "Knots & Woods Tools",
+    "detail": "Demonstrate practical uses of the square knot, two half-hitches, and taut-line hitch; demonstrate proper care, sharpening, and use of the pocketknife, saw, and ax and describe when each should be used.",
+    "category": "Outdoor Skills",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Tenderfoot-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Tenderfoot",
+    "req_id": "TF-4",
+    "title": "First Aid Foundations",
+    "detail": "Show first aid for minor injuries (cuts/scrapes, blisters, minor burns/scalds, insect/tick stings, venomous snakebite, nosebleed, frostbite, sunburn, choking); identify hazardous plants and treatment; discuss prevention; assemble a personal first-aid kit.",
+    "category": "First Aid",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Tenderfoot-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Tenderfoot",
+    "req_id": "TF-5",
+    "title": "Buddy System & Hiking Safety",
+    "detail": "Explain and use the buddy system; explain what to do if lost; explain safe/responsible hiking rules on highway/cross-country day/night; explain hiking on durable surfaces with examples.",
+    "category": "Safety",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Tenderfoot-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Tenderfoot",
+    "req_id": "TF-6",
+    "title": "Physical Fitness (baseline → plan → improvement)",
+    "detail": "Record baseline results (pushups, situps/curl-ups, sit-and-reach, 1-mile walk/run); develop a 30-day improvement plan; show improvement and record results after practice.",
+    "category": "Fitness",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Tenderfoot-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "fitness_days_required": 30
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Tenderfoot",
+    "req_id": "TF-7",
+    "title": "Flag Etiquette & Service",
+    "detail": "Demonstrate raising, lowering, displaying, and folding the U.S. flag; participate in one hour of Scoutmaster-approved service and explain how it relates to the Scout slogan and motto.",
+    "category": "Citizenship",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Tenderfoot-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "service_hours_min": 1
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Tenderfoot",
+    "req_id": "TF-8",
+    "title": "Teaching EDGE",
+    "detail": "Describe the steps of Teaching EDGE and use EDGE to teach someone how to tie a square knot.",
+    "category": "Leadership",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Tenderfoot-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Tenderfoot",
+    "req_id": "TF-9",
+    "title": "Scout Spirit",
+    "detail": "Demonstrate Scout spirit by living the Scout Oath and Law; tell how you have done your duty to God and lived four points of the Law in daily life.",
+    "category": "Ideals",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Tenderfoot-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Tenderfoot",
+    "req_id": "TF-10",
+    "title": "Scoutmaster Conference",
+    "detail": "Participate in a Scoutmaster conference while working toward Tenderfoot (after completing Scout rank req 7).",
+    "category": "Conferences & Reviews",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Tenderfoot-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {
+      "conference_required": true
+    }
+  },
+  {
+    "rank": "Tenderfoot",
+    "req_id": "TF-11",
+    "title": "Board of Review",
+    "detail": "Successfully complete a Tenderfoot board of review.",
+    "category": "Conferences & Reviews",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Tenderfoot-Rank-Requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {
+      "bor_required": true
+    }
+  },
+  {
+    "rank": "Second Class",
+    "req_id": "SC2-1",
+    "title": "Camping & Outdoor Ethics",
+    "detail": "Participate in five activities (≥3 outdoors; ≥2 include overnight camping) sleeping in a tent/structure you helped pitch; recite the seven Leave No Trace principles from memory and explain application; recommend a patrol site and explain site selection.",
+    "category": "Camping",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-Second-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Second Class",
+    "req_id": "SC2-2",
+    "title": "Cooking & Tools",
+    "detail": "Explain when to use cooking/warming fires; prepare tinder/kindling/fuel and build/light/extinguish a minimum-impact fire where permitted; explain and light a backpacking/propane stove with safety; plan and cook one hot breakfast or lunch with nutrition and food safety; tie sheet bend and bowline and explain uses.",
+    "category": "Cooking & Tools",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-Second-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Second Class",
+    "req_id": "SC2-3",
+    "title": "Navigation",
+    "detail": "Show compass use and orient a map; identify five map symbols; complete a 5-mile hike (or 10 miles by bike) using map+compass; describe hike hazards and prevention; demonstrate direction finding without a compass day/night.",
+    "category": "Navigation",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-Second-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Second Class",
+    "req_id": "SC2-4",
+    "title": "Nature",
+    "detail": "Identify or show evidence of at least 10 kinds of wild animals in your area or camping location.",
+    "category": "Nature",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-Second-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Second Class",
+    "req_id": "SC2-5",
+    "title": "Aquatics",
+    "detail": "Explain safe swim precautions; complete BSA beginner test; demonstrate reaching/throwing rescues; explain why reaching/throwing are preferred over swimming rescues and how to avoid contact.",
+    "category": "Aquatics",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-Second-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Second Class",
+    "req_id": "SC2-6",
+    "title": "First Aid & Emergency Preparedness",
+    "detail": "Demonstrate first aid for specific injuries (object in eye, bites, punctures, serious burns, heat exhaustion, shock, heatstroke, dehydration, hypothermia, hyperventilation); show hurry cases (stopped breathing, stroke, severe bleeding, ingested poisoning); discuss prevention; explain emergencies and calling for help at home/backcountry; explain response to vehicular accident.",
+    "category": "First Aid",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-Second-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Second Class",
+    "req_id": "SC2-7",
+    "title": "Fitness (4-week activity)",
+    "detail": "Be physically active at least 30 minutes/day, 5 days/week for 4 weeks; keep a log; share results and plan ahead; participate in a substance-misuse awareness program and discuss with family and leader.",
+    "category": "Fitness",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-Second-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "activity_weeks": 4
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Second Class",
+    "req_id": "SC2-8",
+    "title": "Citizenship & Personal Management",
+    "detail": "Participate in a flag ceremony; explain respect for the U.S. flag; set a savings goal and earning plan with a parent; compare prices at three locations and decide how to spend/save; complete two hours of service and explain relation to Scout Oath.",
+    "category": "Citizenship",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-Second-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "service_hours_min": 2
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Second Class",
+    "req_id": "SC2-9",
+    "title": "Personal Safety Awareness",
+    "detail": "Explain the three R’s of personal safety; describe bullying and appropriate responses.",
+    "category": "Safety",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-Second-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Second Class",
+    "req_id": "SC2-10",
+    "title": "Scout Spirit, Conference & Board of Review",
+    "detail": "Demonstrate Scout spirit; participate in a Scoutmaster conference (after Tenderfoot 10); successfully complete a Second Class board of review.",
+    "category": "Conferences & Reviews",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-Second-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {
+      "conference_required": true,
+      "bor_required": true
+    }
+  },
+  {
+    "rank": "First Class",
+    "req_id": "FC-1",
+    "title": "Camping & Outdoor Ethics",
+    "detail": "Since joining, participate in 10 activities (≥6 outdoors; ≥3 include overnight camping) sleeping in a tent/structure you helped pitch; explain outdoor ethics impacts on the environment and other users.",
+    "category": "Camping",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-First-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "First Class",
+    "req_id": "FC-2",
+    "title": "Cooking (plan → shop → execute)",
+    "detail": "Plan menus for three meals (B/L/D) with nutrition; list budget and quantities; show needed cooking gear; demonstrate food handling and waste disposal; on a campout serve as cook, supervise assistants, prepare the meals, and supervise cleanup.",
+    "category": "Cooking",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-First-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "First Class",
+    "req_id": "FC-3",
+    "title": "Tools: Lashings & Pioneering",
+    "detail": "Discuss when to use lashings; tie timber hitch and clove hitch; tie square, shear, and diagonal lashings; build a useful camp gadget or structure.",
+    "category": "Outdoor Skills",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-First-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "First Class",
+    "req_id": "FC-4",
+    "title": "Navigation: Orienteering & GPS",
+    "detail": "Complete a ≥1-mile orienteering course including height/width measurement; demonstrate electronic navigation (GPS/app): find current location, a destination, a route, and follow it.",
+    "category": "Navigation",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-First-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "First Class",
+    "req_id": "FC-5",
+    "title": "Nature & Weather",
+    "detail": "Identify ≥10 native plants; identify two ways to get a weather forecast and why it matters; describe ≥3 natural indicators of hazardous weather and actions to take; describe extreme local weather, risk assessment, alternate plans, and preparation/response.",
+    "category": "Nature & Weather",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-First-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "First Class",
+    "req_id": "FC-6",
+    "title": "Aquatics",
+    "detail": "Successfully complete the BSA swimmer test; tell precautions for Safe Trip Afloat; identify boat and paddle/oar parts; describe proper body positioning in a watercraft; demonstrate a line rescue as tender and rescuer (~30 ft).",
+    "category": "Aquatics",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-First-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "First Class",
+    "req_id": "FC-7",
+    "title": "First Aid & Emergency Preparedness",
+    "detail": "Demonstrate bandaging for sprained ankle and for injuries on head, upper arm, and collarbone; show transports from smoke-filled room and a 25-yard assist for a sprained ankle; tell heart attack signals and explain CPR steps; identify building utilities and hazards; develop a home emergency plan for fire, storm, power/water outage; explain obtaining potable water in an emergency.",
+    "category": "First Aid",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-First-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "First Class",
+    "req_id": "FC-8",
+    "title": "Fitness (4-week activity)",
+    "detail": "After Second Class 7a, be physically active at least 30 minutes/day, 5 days/week for 4 weeks; keep a log; share challenges/successes and set a goal to continue.",
+    "category": "Fitness",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-First-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "activity_weeks": 4
+    },
+    "gating": {}
+  },
+  {
+    "rank": "First Class",
+    "req_id": "FC-9",
+    "title": "Citizenship & Service",
+    "detail": "Discuss U.S. constitutional rights/obligations with a leader-approved individual; investigate a local environmental issue and share; plan/apply reduce/reuse/recycle between two similar outings and compare results; complete three hours of service (not the same hours used for Tenderfoot/Second Class) and explain relation to the Scout Law.",
+    "category": "Citizenship",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-First-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "service_hours_min": 3
+    },
+    "gating": {}
+  },
+  {
+    "rank": "First Class",
+    "req_id": "FC-10",
+    "title": "Recruiting & Scout Spirit",
+    "detail": "Tell an eligible youth or inactive Scout about Scouting and invite them to an event (or encourage re-engagement) and share efforts; demonstrate Scout spirit (duty to God; four different points of the Law).",
+    "category": "Leadership & Ideals",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-First-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "First Class",
+    "req_id": "FC-11",
+    "title": "Scoutmaster Conference & Board of Review",
+    "detail": "Participate in a Scoutmaster conference (after Second Class 11) and successfully complete a First Class board of review.",
+    "category": "Conferences & Reviews",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2022/09/2022-First-Class-rank.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {
+      "conference_required": true,
+      "bor_required": true
+    }
+  },
+  {
+    "rank": "Star",
+    "req_id": "STAR-1",
+    "title": "Active in unit (4 months as First Class)",
+    "detail": "Be active in your unit for at least four months as a First Class Scout.",
+    "category": "Participation",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Star-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "months_active": 4,
+      "rank_context": "First Class"
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Star",
+    "req_id": "STAR-2",
+    "title": "Scout Spirit",
+    "detail": "Demonstrate Scout spirit by living the Scout Oath and Law in daily life.",
+    "category": "Ideals",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Star-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Star",
+    "req_id": "STAR-3",
+    "title": "Merit Badges (6 total; ≥4 Eagle-required)",
+    "detail": "Earn six merit badges total (any four from the Eagle-required list).",
+    "category": "Merit Badges",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Star-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "mb_total": 6,
+      "mb_eagle_min": 4
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Star",
+    "req_id": "STAR-4",
+    "title": "Service (6 hours)",
+    "detail": "Participate in six hours of service (one or more Scoutmaster-approved projects).",
+    "category": "Service",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Star-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "service_hours_min": 6
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Star",
+    "req_id": "STAR-5",
+    "title": "Leadership (Position of Responsibility 4 months) OR leadership project",
+    "detail": "Serve actively for four months in one or more approved positions of responsibility OR complete a Scoutmaster-approved leadership project to help the troop. (Assistant Patrol Leader does not qualify.)",
+    "category": "Leadership",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Star-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "por_months": 4
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Star",
+    "req_id": "STAR-6",
+    "title": "Personal Safety Awareness (with parent/guardian)",
+    "detail": "With a parent/guardian, complete the exercises in the Parent’s Guide and view the Personal Safety Awareness videos (or document waiver if no access).",
+    "category": "Safety",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Star-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "requires_parent_guardian": true
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Star",
+    "req_id": "STAR-7",
+    "title": "Scoutmaster Conference",
+    "detail": "Participate in a Scoutmaster conference (not a retest).",
+    "category": "Conferences & Reviews",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Star-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {
+      "conference_required": true
+    }
+  },
+  {
+    "rank": "Star",
+    "req_id": "STAR-8",
+    "title": "Board of Review",
+    "detail": "Successfully complete a Star board of review.",
+    "category": "Conferences & Reviews",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Star-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {
+      "bor_required": true
+    }
+  },
+  {
+    "rank": "Life",
+    "req_id": "LIFE-1",
+    "title": "Active in unit (6 months as Star)",
+    "detail": "Be active in your unit for at least six months as a Star Scout.",
+    "category": "Participation",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Life-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "months_active": 6,
+      "rank_context": "Star"
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Life",
+    "req_id": "LIFE-2",
+    "title": "Scout Spirit",
+    "detail": "Demonstrate Scout spirit by living the Scout Oath and Law in daily life.",
+    "category": "Ideals",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Life-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Life",
+    "req_id": "LIFE-3",
+    "title": "Merit Badges (11 total; ≥7 Eagle-required)",
+    "detail": "Earn a total of 11 merit badges (Star + Life), including at least seven from the Eagle-required list.",
+    "category": "Merit Badges",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Life-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "mb_total": 11,
+      "mb_eagle_min": 7
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Life",
+    "req_id": "LIFE-4",
+    "title": "Service (6 hours; ≥3 conservation)",
+    "detail": "Participate in six hours of service as a Star Scout; at least three hours must be conservation-related.",
+    "category": "Service",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Life-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "service_hours_min": 6,
+      "service_conservation_min": 3
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Life",
+    "req_id": "LIFE-5",
+    "title": "Leadership (Position of Responsibility 6 months) OR leadership project",
+    "detail": "Serve actively for six months in approved positions of responsibility OR complete a Scoutmaster-approved leadership project. (Assistant Patrol Leader does not qualify.)",
+    "category": "Leadership",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Life-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "por_months": 6
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Life",
+    "req_id": "LIFE-6",
+    "title": "Personal Safety Awareness (with parent/guardian)",
+    "detail": "With a parent/guardian, complete the exercises in the Parent’s Guide and view the Personal Safety Awareness videos (or document waiver if no access).",
+    "category": "Safety",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Life-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "requires_parent_guardian": true
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Life",
+    "req_id": "LIFE-7",
+    "title": "Scoutmaster Conference",
+    "detail": "Participate in a Scoutmaster conference (not a retest).",
+    "category": "Conferences & Reviews",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Life-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {
+      "conference_required": true
+    }
+  },
+  {
+    "rank": "Life",
+    "req_id": "LIFE-8",
+    "title": "Board of Review",
+    "detail": "Successfully complete a Life board of review.",
+    "category": "Conferences & Reviews",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/01/2024-Life-Rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {
+      "bor_required": true
+    }
+  },
+  {
+    "rank": "Eagle",
+    "req_id": "EAGLE-1",
+    "title": "Active in unit (6 months as Life)",
+    "detail": "Be active in your unit for at least six months as a Life Scout.",
+    "category": "Participation",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/11/eagle-rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://www.scouting.org/skills/merit-badges/eagle-required/",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf",
+      "https://www.scouting.org/programs/scouts-bsa/advancement-and-awards/eagle-scout-workbook/",
+      "https://www.scouting.org/wp-content/uploads/2025/01/512-72825-Eagle-Scout-Application.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "months_active": 6,
+      "rank_context": "Life"
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Eagle",
+    "req_id": "EAGLE-2",
+    "title": "Scout Spirit",
+    "detail": "Demonstrate Scout spirit by living the Scout Oath and Law in daily life and explain how they will guide your life.",
+    "category": "Ideals",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/11/eagle-rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://www.scouting.org/skills/merit-badges/eagle-required/",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf",
+      "https://www.scouting.org/programs/scouts-bsa/advancement-and-awards/eagle-scout-workbook/",
+      "https://www.scouting.org/wp-content/uploads/2025/01/512-72825-Eagle-Scout-Application.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {}
+  },
+  {
+    "rank": "Eagle",
+    "req_id": "EAGLE-3",
+    "title": "Merit Badges (21 total; 14 Eagle-required)",
+    "detail": "Earn a total of 21 merit badges including the 14 that are Eagle-required (with three choose-one groups).",
+    "category": "Merit Badges",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/11/eagle-rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://www.scouting.org/skills/merit-badges/eagle-required/",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf",
+      "https://www.scouting.org/programs/scouts-bsa/advancement-and-awards/eagle-scout-workbook/",
+      "https://www.scouting.org/wp-content/uploads/2025/01/512-72825-Eagle-Scout-Application.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "mb_total": 21,
+      "mb_eagle_required": 14,
+      "choose_one_groups": [
+        [
+          "Emergency Preparedness",
+          "Lifesaving"
+        ],
+        [
+          "Environmental Science",
+          "Sustainability"
+        ],
+        [
+          "Swimming",
+          "Hiking",
+          "Cycling"
+        ]
+      ]
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Eagle",
+    "req_id": "EAGLE-4",
+    "title": "Leadership (Position of Responsibility 6 months as Life) OR leadership project",
+    "detail": "While a Life Scout, serve actively for six months in approved positions of responsibility OR complete a Scoutmaster-approved leadership project to help the troop. (Assistant Patrol Leader does not qualify.)",
+    "category": "Leadership",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/11/eagle-rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://www.scouting.org/skills/merit-badges/eagle-required/",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf",
+      "https://www.scouting.org/programs/scouts-bsa/advancement-and-awards/eagle-scout-workbook/",
+      "https://www.scouting.org/wp-content/uploads/2025/01/512-72825-Eagle-Scout-Application.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "por_months": 6,
+      "as_life": true
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Eagle",
+    "req_id": "EAGLE-5",
+    "title": "Eagle Scout Service Project",
+    "detail": "Plan, develop, and give leadership to a service project helpful to a religious institution, school, or community; obtain all approvals before work; complete the official Workbook deliverables (proposal, plan, fundraising application if any, and final report).",
+    "category": "Service Project",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/11/eagle-rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://www.scouting.org/skills/merit-badges/eagle-required/",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf",
+      "https://www.scouting.org/programs/scouts-bsa/advancement-and-awards/eagle-scout-workbook/",
+      "https://www.scouting.org/wp-content/uploads/2025/01/512-72825-Eagle-Scout-Application.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "project_required": true,
+      "approvals_required": [
+        "beneficiary",
+        "unit_leader",
+        "unit_committee",
+        "council_district"
+      ]
+    },
+    "gating": {}
+  },
+  {
+    "rank": "Eagle",
+    "req_id": "EAGLE-6",
+    "title": "Scoutmaster Conference",
+    "detail": "Participate in a Scoutmaster conference (not a retest).",
+    "category": "Conferences & Reviews",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/11/eagle-rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://www.scouting.org/skills/merit-badges/eagle-required/",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf",
+      "https://www.scouting.org/programs/scouts-bsa/advancement-and-awards/eagle-scout-workbook/",
+      "https://www.scouting.org/wp-content/uploads/2025/01/512-72825-Eagle-Scout-Application.pdf"
+    ],
+    "notes": "",
+    "validation": {},
+    "gating": {
+      "conference_required": true
+    }
+  },
+  {
+    "rank": "Eagle",
+    "req_id": "EAGLE-7",
+    "title": "Board of Review + Statement of Ambitions and Life Purpose",
+    "detail": "Successfully complete an Eagle board of review. Before the BOR, prepare a Statement of your ambitions and life purpose and a listing of leadership positions held, honors, and awards.",
+    "category": "Conferences & Reviews",
+    "source_urls": [
+      "https://www.scouting.org/wp-content/uploads/2024/11/eagle-rank-requirements.pdf",
+      "https://www.scouting.org/wp-content/uploads/2025/04/3321624-Scouts-BSA-Requirements.pdf",
+      "https://www.scouting.org/skills/merit-badges/eagle-required/",
+      "https://filestore.scouting.org/filestore/pdf/33088.pdf",
+      "https://www.scouting.org/programs/scouts-bsa/advancement-and-awards/eagle-scout-workbook/",
+      "https://www.scouting.org/wp-content/uploads/2025/01/512-72825-Eagle-Scout-Application.pdf"
+    ],
+    "notes": "",
+    "validation": {
+      "pre_bor_documents": [
+        "ambitions_statement",
+        "leadership_and_awards_list"
+      ]
+    },
+    "gating": {
+      "bor_required": true
+    }
+  }
+]

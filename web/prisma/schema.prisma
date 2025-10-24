@@ -68,9 +68,14 @@ model Requirement {
   durationDays   Int?
   durationMonths Int?
   notes          String?
+  summary        String?
+  detail         String?
+  resourceUrl    String?
+  dependencyText String?
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
   progress       RankProgress[]
+  subtasks       RequirementSubtask[]
 
   @@index([rank, sortOrder])
   @@map("requirements")
@@ -95,6 +100,8 @@ model RankProgress {
   scout       Scout       @relation(fields: [scoutId], references: [id])
   requirement Requirement @relation(fields: [requirementId], references: [id])
   approvedBy  User?       @relation("LeaderApprovals", fields: [approvedById], references: [id])
+  subtasks    RequirementSubtaskProgress[]
+  noteEntries RankProgressNote[]
 
   @@unique([scoutId, requirementId])
   @@index([requirementId])
@@ -118,6 +125,7 @@ model User {
   approvedProgress RankProgress[]    @relation("LeaderApprovals")
   auditLogs       AuditLog[]
   updatedSettings Setting[]          @relation("SettingUpdatedBy")
+  progressNotes   RankProgressNote[] @relation("RankProgressNoteAuthor")
   createdAt       DateTime           @default(now())
   updatedAt       DateTime           @updatedAt
 
@@ -250,4 +258,52 @@ model AuditLog {
 
   @@index([entity, entityId])
   @@map("audit_logs")
+}
+
+model RequirementSubtask {
+  id            String    @id @default(uuid())
+  requirementId String
+  code          String
+  title         String
+  detail        String?
+  sortOrder     Int
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  requirement Requirement @relation(fields: [requirementId], references: [id])
+  progress    RequirementSubtaskProgress[]
+
+  @@unique([requirementId, code])
+  @@map("requirement_subtasks")
+}
+
+model RequirementSubtaskProgress {
+  id             String   @id @default(uuid())
+  rankProgressId String
+  subtaskId      String
+  completedAt    DateTime?
+  notes          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  rankProgress RankProgress   @relation(fields: [rankProgressId], references: [id])
+  subtask      RequirementSubtask @relation(fields: [subtaskId], references: [id])
+
+  @@unique([rankProgressId, subtaskId])
+  @@map("requirement_subtask_progress")
+}
+
+model RankProgressNote {
+  id             String   @id @default(uuid())
+  rankProgressId String
+  authorId       String?
+  body           String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  rankProgress RankProgress @relation(fields: [rankProgressId], references: [id])
+  author       User?        @relation("RankProgressNoteAuthor", fields: [authorId], references: [id])
+
+  @@index([rankProgressId])
+  @@map("rank_progress_notes")
 }
