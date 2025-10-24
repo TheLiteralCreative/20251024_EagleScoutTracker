@@ -93,13 +93,19 @@ export const updateRankProgress = async (formData: FormData): Promise<ActionResu
   const eligibleOverride = parseDate(manualEligibleValue);
 
   try {
-    const requirement = await prisma.requirement.findUnique({
-      where: { id: requirementId },
-      select: {
-        durationDays: true,
-        durationMonths: true,
-      },
-    });
+    const [requirement, scout] = await Promise.all([
+      prisma.requirement.findUnique({
+        where: { id: requirementId },
+        select: {
+          durationDays: true,
+          durationMonths: true,
+        },
+      }),
+      prisma.scout.findUnique({
+        where: { id: scoutId },
+        select: { userId: true },
+      }),
+    ]);
 
     if (!requirement) {
       return { error: "Requirement not found." };
@@ -113,7 +119,7 @@ export const updateRankProgress = async (formData: FormData): Promise<ActionResu
 
     const eligibleAt = computedEligible ?? eligibleOverride;
 
-    await prisma.rankProgress.upsert({
+    const updatedProgress = await prisma.rankProgress.upsert({
       where: {
         scoutId_requirementId: {
           scoutId,
@@ -141,7 +147,24 @@ export const updateRankProgress = async (formData: FormData): Promise<ActionResu
       },
     });
 
+    await prisma.auditLog.create({
+      data: {
+        actorId: scout?.userId ?? null,
+        action: "RANK_PROGRESS_UPDATED",
+        entity: "RankProgress",
+        entityId: updatedProgress.id,
+        metadata: {
+          scoutId,
+          requirementId,
+          startedAt: startedAt ? startedAt.toISOString() : null,
+          eligibleAt: eligibleAt ? eligibleAt.toISOString() : null,
+          completedAt: completedAt ? completedAt.toISOString() : null,
+        },
+      },
+    });
+
     revalidatePath("/");
+    revalidatePath("/leader");
 
     return { success: "Progress saved." };
   } catch (error) {

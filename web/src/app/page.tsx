@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Rank } from "@/generated/prisma/enums";
 import { updateRankProgress } from "@/app/actions/update-rank-progress";
 import { prisma } from "@/lib/prisma";
@@ -90,6 +92,14 @@ export default async function Home() {
                 {rankMetadata[scout.currentRank ?? Rank.SCOUT]?.title ?? "Scout"}
               </span>
             </p>
+            <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-400">
+              <Link
+                href="/leader"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-700/80 bg-slate-900/70 px-4 py-2 font-semibold uppercase tracking-[0.25em] text-slate-200 transition hover:border-slate-500 hover:bg-slate-800/80"
+              >
+                Leader dashboard
+              </Link>
+            </div>
           </div>
           <dl className="grid grid-cols-2 gap-4 text-left text-sm sm:text-base">
             <div className="rounded-2xl border border-slate-800/80 bg-slate-900/70 p-4">
