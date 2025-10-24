@@ -1,4 +1,4 @@
-import { Rank } from "@/generated/prisma";
+import { Rank } from "@/generated/prisma/enums";
 import { prisma } from "@/lib/prisma";
 
 const rankMetadata: Record<Rank, { title: string; color: string }> = {

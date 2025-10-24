@@ -24,51 +24,230 @@ enum Rank {
   EAGLE
 }
 
+enum Role {
+  ADMIN
+  LEADER
+  SCOUT
+}
+
+enum LinkStatus {
+  PENDING
+  APPROVED
+  REVOKED
+}
+
 model Scout {
-  id          String         @id @default(uuid())
-  firstName   String
-  lastName    String
-  email       String?
-  currentRank Rank?
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
-  progress    RankProgress[]
+  id             String                     @id @default(uuid())
+  firstName      String
+  lastName       String
+  email          String?
+  phone          String?
+  currentRank    Rank?
+  unit           String?
+  council        String?
+  dateOfBirth    DateTime?
+  userId         String?                    @unique
+  createdAt      DateTime                   @default(now())
+  updatedAt      DateTime                   @updatedAt
+  progress       RankProgress[]
+  meritBadges    MeritBadgeProgress[]
+  boardOfReviews BoardOfReview[]
+  leaderLinks    LeaderScoutLink[]
+  user           User?                      @relation("UserScout", fields: [userId], references: [id])
 
   @@map("scouts")
 }
 
 model Requirement {
-  id          String         @id @default(uuid())
-  code        String         @unique
-  title       String
-  description String?
-  rank        Rank
-  sortOrder   Int
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
-  progress    RankProgress[]
+  id             String         @id @default(uuid())
+  code           String         @unique
+  title          String
+  description    String?
+  rank           Rank
+  sortOrder      Int
+  durationDays   Int?
+  durationMonths Int?
+  notes          String?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  progress       RankProgress[]
 
   @@index([rank, sortOrder])
   @@map("requirements")
 }
 
 model RankProgress {
-  id              String       @id @default(uuid())
-  scoutId         String
-  requirementId   String
-  startedAt       DateTime?
-  eligibleAt      DateTime?
-  completedAt     DateTime?
-  notes           String?
-  approved        Boolean      @default(false)
-  approvedInitials String?
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt
+  id                 String       @id @default(uuid())
+  scoutId            String
+  requirementId      String
+  startedAt          DateTime?
+  eligibleAt         DateTime?
+  completedAt        DateTime?
+  notes              String?
+  approved           Boolean      @default(false)
+  approvedById       String?
+  approvedAt         DateTime?
+  approvedInitials   String?
+  approvalComment    String?
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
 
   scout       Scout       @relation(fields: [scoutId], references: [id])
   requirement Requirement @relation(fields: [requirementId], references: [id])
+  approvedBy  User?       @relation("LeaderApprovals", fields: [approvedById], references: [id])
 
   @@unique([scoutId, requirementId])
   @@index([requirementId])
   @@map("rank_progress")
+}
+
+model User {
+  id              String             @id @default(uuid())
+  email           String             @unique
+  emailVerified   DateTime?
+  passwordHash    String?
+  firstName       String
+  lastName        String
+  phone           String?
+  role            Role
+  bsaId           String?
+  initials        String?
+  scoutProfile    Scout?             @relation("UserScout")
+  leaderLinks     LeaderScoutLink[]  @relation("LeaderLinks")
+  approvedLinks   LeaderScoutLink[]  @relation("ApprovedLinks")
+  approvedProgress RankProgress[]    @relation("LeaderApprovals")
+  auditLogs       AuditLog[]
+  updatedSettings Setting[]          @relation("SettingUpdatedBy")
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  @@map("users")
+}
+
+model LeaderScoutLink {
+  id            String     @id @default(uuid())
+  leaderId      String
+  scoutId       String
+  status        LinkStatus @default(PENDING)
+  approvedById  String?
+  approvedAt    DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  leader      User   @relation("LeaderLinks", fields: [leaderId], references: [id])
+  scout       Scout  @relation(fields: [scoutId], references: [id])
+  approvedBy  User?  @relation("ApprovedLinks", fields: [approvedById], references: [id])
+
+  @@unique([leaderId, scoutId])
+  @@map("leader_scout_links")
+}
+
+model MeritBadge {
+  id              String                   @id @default(uuid())
+  name            String                   @unique
+  description     String?
+  isEagleRequired Boolean                  @default(false)
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+  requirements    MeritBadgeRequirement[]
+  progress        MeritBadgeProgress[]
+
+  @@map("merit_badges")
+}
+
+model MeritBadgeRequirement {
+  id            String     @id @default(uuid())
+  meritBadgeId  String
+  code          String
+  description   String?
+  sortOrder     Int
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  meritBadge MeritBadge @relation(fields: [meritBadgeId], references: [id])
+  statuses   MeritBadgeRequirementStatus[]
+
+  @@unique([meritBadgeId, code])
+  @@map("merit_badge_requirements")
+}
+
+model MeritBadgeProgress {
+  id             String                        @id @default(uuid())
+  scoutId        String
+  meritBadgeId   String
+  dateStarted    DateTime?
+  dateCompleted  DateTime?
+  counselorName  String?
+  counselorPhone String?
+  notes          String?
+  createdAt      DateTime                      @default(now())
+  updatedAt      DateTime                      @updatedAt
+
+  scout       Scout      @relation(fields: [scoutId], references: [id])
+  meritBadge  MeritBadge @relation(fields: [meritBadgeId], references: [id])
+  requirements MeritBadgeRequirementStatus[]
+
+  @@unique([scoutId, meritBadgeId])
+  @@map("merit_badge_progress")
+}
+
+model MeritBadgeRequirementStatus {
+  id               String                @id @default(uuid())
+  progressId       String
+  requirementId    String
+  completedAt      DateTime?
+  notes            String?
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+
+  progress     MeritBadgeProgress      @relation(fields: [progressId], references: [id])
+  requirement  MeritBadgeRequirement   @relation(fields: [requirementId], references: [id])
+
+  @@unique([progressId, requirementId])
+  @@map("merit_badge_requirement_status")
+}
+
+model BoardOfReview {
+  id                     String   @id @default(uuid())
+  scoutId                String
+  rank                   Rank
+  previousRankBorActual  DateTime?
+  thisRankBorActual      DateTime?
+  thisRankBorProjected   DateTime?
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  scout Scout @relation(fields: [scoutId], references: [id])
+
+  @@unique([scoutId, rank])
+  @@map("board_of_reviews")
+}
+
+model Setting {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       String
+  description String?
+  updatedById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  updatedBy User? @relation("SettingUpdatedBy", fields: [updatedById], references: [id])
+
+  @@map("settings")
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  actorId   String?
+  action    String
+  entity    String
+  entityId  String
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  actor User? @relation(fields: [actorId], references: [id])
+
+  @@index([entity, entityId])
+  @@map("audit_logs")
 }
