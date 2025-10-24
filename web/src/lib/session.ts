@@ -33,7 +33,7 @@ export async function createSession(userId: string, response: NextResponse) {
 }
 
 export async function invalidateSession(response: NextResponse) {
-  const cookieJar = cookies();
+  const cookieJar = await cookies();
   const sessionCookie = cookieJar.get(SESSION_COOKIE);
   if (!sessionCookie) {
     response.cookies.delete(SESSION_COOKIE);
@@ -49,7 +49,7 @@ export async function invalidateSession(response: NextResponse) {
 }
 
 export async function getCurrentSession() {
-  const cookieJar = cookies();
+  const cookieJar = await cookies();
   const sessionCookie = cookieJar.get(SESSION_COOKIE);
   if (!sessionCookie) {
     return null;
