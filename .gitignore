@@ -1,0 +1,15 @@
+# macOS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS Finder thumbnails
+Icon?
+
+# macOS resource forks
+._*
+
+# Office temporary files
+~$*.doc?
+~$*.xls?
+~$*.ppt?
