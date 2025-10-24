@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Rank } from "@/generated/prisma/enums";
 import { updateRankProgress } from "@/app/actions/update-rank-progress";
 import { prisma } from "@/lib/prisma";
-import { RequirementRow } from "@/components/RequirementRow";
+import { ScoutTabs } from "@/components/ScoutTabs";
 
 const rankMetadata: Record<Rank, { title: string; color: string }> = {
   [Rank.SCOUT]: { title: "Scout", color: "from-slate-500/10 via-slate-500/5 to-slate-500/10" },
@@ -47,13 +47,38 @@ export default async function Home() {
   const scout = await prisma.scout.findFirst({
     include: {
       progress: {
-        include: { requirement: true },
+        include: {
+          noteEntries: {
+            include: {
+              author: {
+                select: {
+                  id: true,
+                  firstName: true,
+                  lastName: true,
+                  initials: true,
+                  role: true,
+                },
+              },
+            },
+            orderBy: { createdAt: "desc" },
+          },
+          subtasks: {
+            include: {
+              subtask: true,
+            },
+          },
+        },
       },
     },
     orderBy: { createdAt: "asc" },
   });
 
   const requirements = await prisma.requirement.findMany({
+    include: {
+      subtasks: {
+        orderBy: { sortOrder: "asc" },
+      },
+    },
     orderBy: [{ rank: "asc" }, { sortOrder: "asc" }],
   });
 
@@ -76,6 +101,182 @@ export default async function Home() {
   const progressByRequirement = new Map(
     scout.progress.map((item) => [item.requirementId, item])
   );
+
+  const requirementMap = new Map(requirements.map((req) => [req.id, req]));
+
+  const rankPanels = rankOrder
+    .map((rank) => {
+      const rankRequirements = requirements.filter((requirement) => requirement.rank === rank);
+
+      if (rankRequirements.length === 0) {
+        return null;
+      }
+
+      return {
+        key: rank,
+        label: rankMetadata[rank].title,
+        color: rankMetadata[rank].color,
+        requirements: rankRequirements.map((requirement) => {
+          const progress = progressByRequirement.get(requirement.id);
+
+          return {
+            requirement: {
+              id: requirement.id,
+              code: requirement.code,
+              title: requirement.title,
+              summary: requirement.summary ?? requirement.description ?? null,
+              detail: requirement.detail ?? null,
+              resourceUrl: requirement.resourceUrl ?? null,
+              dependencyText: requirement.dependencyText ?? null,
+              durationDays: requirement.durationDays ?? null,
+              durationMonths: requirement.durationMonths ?? null,
+              sortOrder: requirement.sortOrder,
+            },
+            progress: progress
+              ? {
+                  id: progress.id,
+                  startedAt: progress.startedAt?.toISOString() ?? null,
+                  eligibleAt: progress.eligibleAt?.toISOString() ?? null,
+                  completedAt: progress.completedAt?.toISOString() ?? null,
+                  approved: progress.approved,
+                  approvedInitials: progress.approvedInitials,
+                  approvalComment: progress.approvalComment,
+                  notes: progress.notes ?? null,
+                  updatedAt: progress.updatedAt.toISOString(),
+                }
+              : null,
+          };
+        }),
+      };
+    })
+    .filter(Boolean) as Array<{
+    key: Rank;
+    label: string;
+    color: string;
+    requirements: Array<{
+      requirement: {
+        id: string;
+        code: string;
+        title: string;
+        summary: string | null;
+        detail: string | null;
+        resourceUrl: string | null;
+        dependencyText: string | null;
+        durationDays: number | null;
+        durationMonths: number | null;
+        sortOrder: number;
+      };
+      progress: {
+        id: string;
+        startedAt: string | null;
+        eligibleAt: string | null;
+        completedAt: string | null;
+        approved: boolean;
+        approvedInitials: string | null;
+        approvalComment: string | null;
+        notes: string | null;
+        updatedAt: string;
+      } | null;
+    }>;
+  }>;
+
+  const nextSteps = rankPanels
+    .flatMap((panel) =>
+      panel.requirements.map((entry) => {
+        const { requirement, progress } = entry;
+        const completed =
+          !!progress?.approved && !!progress?.completedAt && !!progress?.approvedInitials;
+        if (completed) {
+          return null;
+        }
+
+        const rankIndex = rankOrder.indexOf(panel.key);
+        const hasDuration =
+          (requirement.durationDays ?? 0) > 0 || (requirement.durationMonths ?? 0) > 0;
+        const inProgress = !!progress?.startedAt && !progress?.completedAt;
+        const priority =
+          rankIndex * 1000 + (hasDuration ? 0 : 300) + (inProgress ? 50 : 200) + requirement.sortOrder;
+
+        const messages: string[] = [];
+        if (hasDuration) {
+          const months = requirement.durationMonths;
+          const days = requirement.durationDays;
+          const parts: string[] = [];
+          if (months && months > 0) {
+            parts.push(`${months} month${months > 1 ? "s" : ""}`);
+          }
+          if (days && days > 0) {
+            parts.push(`${days}-day`);
+          }
+          messages.push(`Time-bound requirement (${parts.join(" and ") || "duration-based"}). Start early.`);
+        }
+        if (requirement.dependencyText) {
+          messages.push(requirement.dependencyText);
+        }
+        if (inProgress) {
+          messages.push("Already started—finish to keep momentum.");
+        } else {
+          messages.push(`Next pending item in ${panel.label}.`);
+        }
+
+        return {
+          key: `${panel.key}-${requirement.code}`,
+          rank: panel.key,
+          rankLabel: panel.label,
+          requirement,
+          progress: progress
+            ? {
+                startedAt: progress.startedAt,
+                eligibleAt: progress.eligibleAt,
+                completedAt: progress.completedAt,
+              }
+            : null,
+          messages,
+          priority,
+        };
+      })
+    )
+    .filter(Boolean) as Array<{
+    key: string;
+    rank: Rank;
+    rankLabel: string;
+    requirement: (typeof rankPanels)[number]["requirements"][number]["requirement"];
+    progress: {
+      startedAt: string | null;
+      eligibleAt: string | null;
+      completedAt: string | null;
+    } | null;
+    messages: string[];
+    priority: number;
+  }>;
+
+  const nextStepsTop = nextSteps.sort((a, b) => a.priority - b.priority).slice(0, 3);
+
+  const notesFeed = scout.progress
+    .flatMap((entry) => {
+      const requirement = requirementMap.get(entry.requirementId);
+      if (!requirement) {
+        return [];
+      }
+
+      return entry.noteEntries.map((note) => ({
+        id: note.id,
+        requirementCode: requirement.code,
+        requirementTitle: requirement.title,
+        body: note.body,
+        createdAt: note.createdAt.toISOString(),
+        author: note.author
+          ? {
+              id: note.author.id,
+              firstName: note.author.firstName,
+              lastName: note.author.lastName,
+              initials: note.author.initials,
+              role: note.author.role,
+            }
+          : null,
+      }));
+    })
+    .sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
   return (
     <main className="min-h-screen bg-slate-950 py-10 text-slate-100">
@@ -117,69 +318,23 @@ export default async function Home() {
           </dl>
         </header>
 
-        <section className="flex flex-col gap-6">
-          {rankOrder.map((rank) => {
-            const rankRequirements = requirements.filter(
-              (requirement) => requirement.rank === rank
-            );
-
-            if (rankRequirements.length === 0) {
-              return null;
-            }
-
-            const rankInfo = rankMetadata[rank];
-
-            return (
-              <article
-                key={rank}
-                className={`rounded-3xl border border-slate-800 bg-gradient-to-br p-6 shadow-lg shadow-slate-950/40 ${rankInfo?.color ?? "from-slate-900 via-slate-900/60 to-slate-900"}`}
-              >
-                <header className="mb-4 flex items-center justify-between gap-4">
-                  <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-                    {rankInfo?.title ?? rank}
-                  </h2>
-                  <span className="rounded-full border border-slate-700/60 bg-slate-900/70 px-3 py-1 text-xs uppercase tracking-[0.25em] text-slate-400">
-                    {rankRequirements.length} requirements
-                  </span>
-                </header>
-                <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-slate-800/80 text-left text-sm sm:text-base">
-                    <thead className="text-xs uppercase tracking-[0.2em] text-slate-400">
-                      <tr className="text-[11px] sm:text-xs">
-                        <th className="py-3 pr-4 font-medium">Code</th>
-                        <th className="py-3 pr-4 font-medium">Requirement</th>
-                        <th className="py-3 pr-4 font-medium whitespace-nowrap">Started</th>
-                        <th className="py-3 pr-4 font-medium whitespace-nowrap">Eligible</th>
-                        <th className="py-3 pr-4 font-medium whitespace-nowrap">Completed</th>
-                        <th className="py-3 pr-4 font-medium whitespace-nowrap">Approved</th>
-                        <th className="py-3 font-medium">Notes</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-800/60">
-                      {rankRequirements.map((requirement) => {
-                        const progress = progressByRequirement.get(requirement.id);
-                        const progressKey =
-                          progress?.updatedAt instanceof Date
-                            ? `${requirement.id}-${progress.updatedAt.getTime()}`
-                            : `${requirement.id}-new`;
-
-                        return (
-                          <RequirementRow
-                            key={progressKey}
-                            requirement={requirement}
-                            progress={progress}
-                            scoutId={scout.id}
-                            onSubmit={updateRankProgress}
-                          />
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </article>
-            );
-          })}
-        </section>
+        <ScoutTabs
+          scout={{
+            id: scout.id,
+            firstName: scout.firstName,
+            lastName: scout.lastName,
+            email: scout.email,
+            phone: scout.phone,
+            unit: scout.unit,
+            council: scout.council,
+            currentRank: scout.currentRank ?? null,
+            dateOfBirth: scout.dateOfBirth?.toISOString() ?? null,
+          }}
+          rankPanels={rankPanels}
+          nextSteps={nextStepsTop}
+          notesFeed={notesFeed}
+          updateAction={updateRankProgress}
+        />
       </div>
     </main>
   );

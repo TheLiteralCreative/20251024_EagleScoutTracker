@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useState, useTransition } from "react";
-import type { Requirement, RankProgress } from "@/generated/prisma/client";
 
-type UpdateRankProgressAction = (formData: FormData) => Promise<
+export type UpdateRankProgressAction = (formData: FormData) => Promise<
   | {
       success?: string;
       error?: string;
@@ -11,19 +10,43 @@ type UpdateRankProgressAction = (formData: FormData) => Promise<
   | void
 >;
 
+type RequirementRowRequirement = {
+  id: string;
+  code: string;
+  title: string;
+  summary: string | null;
+  detail: string | null;
+  resourceUrl: string | null;
+  dependencyText: string | null;
+  durationDays: number | null;
+  durationMonths: number | null;
+};
+
+type RequirementRowProgress = {
+  id: string;
+  startedAt: string | null;
+  eligibleAt: string | null;
+  completedAt: string | null;
+  approved: boolean;
+  approvedInitials: string | null;
+  approvalComment: string | null;
+  notes: string | null;
+  updatedAt: string;
+};
+
 type RequirementRowProps = {
-  requirement: Requirement;
-  progress?: RankProgress | null;
+  requirement: RequirementRowRequirement;
+  progress: RequirementRowProgress | null;
   scoutId: string;
   onSubmit: UpdateRankProgressAction;
 };
 
-const toInputDate = (value?: Date | string | null) => {
+const toInputDate = (value?: string | null) => {
   if (!value) {
     return "";
   }
 
-  const date = typeof value === "string" ? new Date(value) : value;
+  const date = new Date(value);
   if (Number.isNaN(date.getTime())) {
     return "";
   }
@@ -31,8 +54,13 @@ const toInputDate = (value?: Date | string | null) => {
   return date.toISOString().slice(0, 10);
 };
 
-const formatDisplayDate = (value?: Date | null) => {
+const formatDisplayDate = (value?: string | null) => {
   if (!value) {
+    return "—";
+  }
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
     return "—";
   }
 
@@ -85,12 +113,8 @@ export function RequirementRow({
 }: RequirementRowProps) {
   const [isPending, startTransition] = useTransition();
   const [startedAt, setStartedAt] = useState<string>(() => toInputDate(progress?.startedAt ?? null));
-  const [completedAt, setCompletedAt] = useState<string>(() =>
-    toInputDate(progress?.completedAt ?? null)
-  );
-  const [eligibleOverride, setEligibleOverride] = useState<string>(() =>
-    toInputDate(progress?.eligibleAt ?? null)
-  );
+  const [completedAt, setCompletedAt] = useState<string>(() => toInputDate(progress?.completedAt ?? null));
+  const [eligibleOverride, setEligibleOverride] = useState<string>(() => toInputDate(progress?.eligibleAt ?? null));
   const [notes, setNotes] = useState<string>(progress?.notes ?? "");
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -162,13 +186,40 @@ export function RequirementRow({
     </span>
   );
 
+  const dependencyMessage =
+    requirement.dependencyText && !progress?.completedAt
+      ? requirement.dependencyText
+      : null;
+
   return (
     <tr className="align-top text-slate-200">
       <td className="py-4 pr-4 font-semibold text-slate-100 sm:text-base">{requirement.code}</td>
       <td className="py-4 pr-4 text-slate-300">
         <div className="font-medium text-slate-100">{requirement.title}</div>
-        {requirement.description && (
-          <p className="mt-1 text-xs text-slate-400 sm:text-sm">{requirement.description}</p>
+        {requirement.summary && (
+          <p className="mt-1 text-xs text-slate-400 sm:text-sm">{requirement.summary}</p>
+        )}
+        {(requirement.detail || requirement.resourceUrl) && (
+          <details className="mt-2 text-xs text-slate-400">
+            <summary className="cursor-pointer select-none text-slate-300 underline decoration-dotted">
+              View full description
+            </summary>
+            {requirement.detail && (
+              <p className="mt-2 whitespace-pre-line text-[13px] leading-relaxed text-slate-300">
+                {requirement.detail}
+              </p>
+            )}
+            {requirement.resourceUrl && (
+              <a
+                className="mt-2 inline-flex items-center text-[13px] font-semibold text-sky-300 hover:text-sky-200"
+                href={requirement.resourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Official reference
+              </a>
+            )}
+          </details>
         )}
       </td>
       <td className="py-4 pr-4">
@@ -189,6 +240,9 @@ export function RequirementRow({
           <div className="rounded-lg border border-slate-700/60 bg-slate-900/60 px-3 py-2 text-sm text-slate-100">
             {eligiblePreview}
           </div>
+          {dependencyMessage && (
+            <p className="text-[11px] leading-relaxed text-slate-400">{dependencyMessage}</p>
+          )}
           <details className="text-[11px] text-slate-500">
             <summary className="cursor-pointer select-none text-slate-400">
               Override date
