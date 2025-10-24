@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { Rank } from "@/generated/prisma/enums";
 import { RequirementRow, UpdateRankProgressAction } from "@/components/RequirementRow";
+import { LogoutButton } from "@/components/LogoutButton";
 
 type ScoutSummary = {
   id: string;
@@ -190,13 +191,14 @@ export function ScoutTabs({
             <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Council</p>
             <p className="mt-1 font-medium">{scout.council ?? "—"}</p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <Link
               href="/leader"
               className="inline-flex items-center justify-center rounded-full border border-slate-700/80 bg-slate-900/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-300 transition hover:border-slate-500 hover:bg-slate-800/80"
             >
               Leader dashboard
             </Link>
+            <LogoutButton variant="ghost" />
           </div>
         </div>
       </div>

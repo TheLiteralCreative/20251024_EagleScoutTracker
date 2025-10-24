@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import { LinkStatus, Rank } from "@/generated/prisma/enums";
 import { updateRankProgress } from "@/app/actions/update-rank-progress";
 import { prisma } from "@/lib/prisma";
 import { ScoutTabs } from "@/components/ScoutTabs";
+import { requireUser } from "@/lib/session";
 
 const rankMetadata: Record<Rank, { title: string; color: string }> = {
   [Rank.SCOUT]: { title: "Scout", color: "from-slate-500/10 via-slate-500/5 to-slate-500/10" },
@@ -44,7 +46,12 @@ const rankOrder: Rank[] = [
 ];
 
 export default async function Home() {
-  const scout = await prisma.scout.findFirst({
+  const viewer = await requireUser({ roles: ["SCOUT", "LEADER", "ADMIN"] });
+  if (!viewer) {
+    redirect("/login");
+  }
+
+  const scoutInclude = {
     include: {
       progress: {
         include: {
@@ -78,8 +85,17 @@ export default async function Home() {
         select: { id: true },
       },
     },
-    orderBy: { createdAt: "asc" },
+    orderBy: { createdAt: "asc" } as const,
+  };
+
+  let scout = await prisma.scout.findFirst({
+    where: viewer.role === "SCOUT" ? { userId: viewer.id } : undefined,
+    ...scoutInclude,
   });
+
+  if (!scout && viewer.role !== "SCOUT") {
+    scout = await prisma.scout.findFirst(scoutInclude);
+  }
 
   const requirements = await prisma.requirement.findMany({
     include: {

@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import { approveRankProgress } from "@/app/actions/approve-rank-progress";
 import { revokeRankProgress } from "@/app/actions/revoke-rank-progress";
 import { prisma } from "@/lib/prisma";
 import { LeaderApprovalRow } from "@/components/LeaderApprovalRow";
-import { LinkStatus, Rank, Role } from "@/generated/prisma/enums";
+import { LinkStatus, Rank } from "@/generated/prisma/enums";
+import { requireUser } from "@/lib/session";
 
 const rankLabels: Record<Rank, string> = {
   [Rank.SCOUT]: "Scout",
@@ -17,8 +19,14 @@ const rankLabels: Record<Rank, string> = {
 };
 
 export default async function LeaderDashboard() {
-  const leader = await prisma.user.findFirst({
-    where: { role: Role.LEADER },
+  const viewer = await requireUser({ roles: ["LEADER"] });
+
+  if (!viewer) {
+    redirect("/login");
+  }
+
+  const leader = await prisma.user.findUnique({
+    where: { id: viewer.id },
     include: {
       leaderLinks: {
         where: { status: LinkStatus.APPROVED },
@@ -37,30 +45,13 @@ export default async function LeaderDashboard() {
   });
 
   if (!leader) {
-    return (
-      <main className="mx-auto flex min-h-screen w-full max-w-4xl flex-col items-center justify-center gap-6 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-6 text-center text-slate-100">
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">Leader Dashboard</h1>
-        <p className="max-w-xl text-balance text-slate-300">
-          No leader account is seeded yet. Run the database seed command to populate sample data, or
-          check back after an admin assigns you to Scouts.
-        </p>
-        <Link
-          href="/"
-          className="rounded-full border border-slate-700/80 bg-slate-900/70 px-4 py-2 text-sm uppercase tracking-[0.25em] text-slate-300 transition hover:border-slate-500 hover:bg-slate-800/80"
-        >
-          Back to Scout view
-        </Link>
-      </main>
-    );
+    redirect("/login");
   }
 
   const pending = await prisma.rankProgress.findMany({
     where: {
       approved: false,
       approvalRequestedLeaderId: leader.id,
-      approvalRequestedAt: {
-        not: null,
-      },
       scout: {
         leaderLinks: {
           some: {
@@ -70,11 +61,11 @@ export default async function LeaderDashboard() {
         },
       },
     },
-    include: {
-      requirement: true,
-      scout: {
-        select: {
-          id: true,
+        include: {
+          requirement: true,
+          scout: {
+            select: {
+              id: true,
           firstName: true,
           lastName: true,
           currentRank: true,

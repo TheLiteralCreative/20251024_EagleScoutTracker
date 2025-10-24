@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { PrismaClient } from "../src/generated/prisma/client";
 import { LinkStatus, Rank, Role } from "../src/generated/prisma/enums";
+import { hashPassword } from "../src/lib/password";
 
 const prisma = new PrismaClient();
 
@@ -220,6 +221,10 @@ async function main() {
     },
   ];
 
+  const adminPassword = hashPassword("Admin!123");
+  const leaderPassword = hashPassword("Leader!123");
+  const scoutPassword = hashPassword("Scout!123");
+
   const [adminUser, leaderUser, scoutUser] = await prisma.$transaction([
     prisma.user.create({
       data: {
@@ -228,6 +233,7 @@ async function main() {
         lastName: "Admin",
         role: Role.ADMIN,
         phone: "555-0100",
+        passwordHash: adminPassword,
       },
     }),
     prisma.user.create({
@@ -238,6 +244,7 @@ async function main() {
         role: Role.LEADER,
         phone: "555-0101",
         initials: "LL",
+        passwordHash: leaderPassword,
       },
     }),
     prisma.user.create({
@@ -247,6 +254,7 @@ async function main() {
         lastName: "Trailblazer",
         role: Role.SCOUT,
         phone: "555-0102",
+        passwordHash: scoutPassword,
       },
     }),
   ]);
