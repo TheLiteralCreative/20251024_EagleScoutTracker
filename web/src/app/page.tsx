@@ -1,5 +1,7 @@
 import { Rank } from "@/generated/prisma/enums";
+import { updateRankProgress } from "@/app/actions/update-rank-progress";
 import { prisma } from "@/lib/prisma";
+import { RequirementRow } from "@/components/RequirementRow";
 
 const rankMetadata: Record<Rank, { title: string; color: string }> = {
   [Rank.SCOUT]: { title: "Scout", color: "from-slate-500/10 via-slate-500/5 to-slate-500/10" },
@@ -38,15 +40,6 @@ const rankOrder: Rank[] = [
   Rank.LIFE,
   Rank.EAGLE,
 ];
-
-const formatDate = (date?: Date | null) => {
-  if (!date) return "—";
-  return new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "2-digit",
-  }).format(date);
-};
 
 export default async function Home() {
   const scout = await prisma.scout.findFirst({
@@ -155,47 +148,19 @@ export default async function Home() {
                     <tbody className="divide-y divide-slate-800/60">
                       {rankRequirements.map((requirement) => {
                         const progress = progressByRequirement.get(requirement.id);
+                        const progressKey =
+                          progress?.updatedAt instanceof Date
+                            ? `${requirement.id}-${progress.updatedAt.getTime()}`
+                            : `${requirement.id}-new`;
+
                         return (
-                          <tr key={requirement.id} className="align-top text-slate-200">
-                            <td className="py-4 pr-4 font-semibold text-slate-100 sm:text-base">
-                              {requirement.code}
-                            </td>
-                            <td className="py-4 pr-4 text-slate-300">
-                              <div className="font-medium text-slate-100">{requirement.title}</div>
-                              {requirement.description && (
-                                <p className="mt-1 text-xs text-slate-400 sm:text-sm">
-                                  {requirement.description}
-                                </p>
-                              )}
-                            </td>
-                            <td className="py-4 pr-4 text-slate-300">
-                              {formatDate(progress?.startedAt ?? null)}
-                            </td>
-                            <td className="py-4 pr-4 text-slate-300">
-                              {formatDate(progress?.eligibleAt ?? null)}
-                            </td>
-                            <td className="py-4 pr-4 text-slate-300">
-                              {formatDate(progress?.completedAt ?? null)}
-                            </td>
-                            <td className="py-4 pr-4 text-slate-300">
-                              {progress?.approved ? (
-                                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-emerald-300">
-                                  {progress.approvedInitials ?? "OK"}
-                                </div>
-                              ) : (
-                                <span className="rounded-full border border-slate-700/60 bg-slate-900/60 px-3 py-1 text-xs uppercase tracking-[0.25em] text-slate-400">
-                                  Pending
-                                </span>
-                              )}
-                            </td>
-                            <td className="py-4 text-slate-300">
-                              {progress?.notes ? (
-                                <p>{progress.notes}</p>
-                              ) : (
-                                <span className="text-slate-500">—</span>
-                              )}
-                            </td>
-                          </tr>
+                          <RequirementRow
+                            key={progressKey}
+                            requirement={requirement}
+                            progress={progress}
+                            scoutId={scout.id}
+                            onSubmit={updateRankProgress}
+                          />
                         );
                       })}
                     </tbody>

@@ -115,7 +115,7 @@ async function main() {
   });
 
   const requirements = await Promise.all(
-    requirementData.map((req, index) =>
+    requirementData.map((req) =>
       prisma.requirement.upsert({
         where: { code: req.code },
         update: {
