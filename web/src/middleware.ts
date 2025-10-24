@@ -1,10 +1,19 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-import { hashToken } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 
 const PUBLIC_PATHS = ["/login", "/api/login", "/api/logout", "/_next", "/api/health"];
+
+const textEncoder = new TextEncoder();
+
+async function hashToken(token: string) {
+  const data = textEncoder.encode(token);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(digest))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -21,7 +30,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  const hashed = hashToken(sessionToken.value);
+  const hashed = await hashToken(sessionToken.value);
   const session = await prisma.session.findUnique({
     where: { sessionToken: hashed },
     include: { user: true },
