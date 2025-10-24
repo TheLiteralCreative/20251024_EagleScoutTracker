@@ -429,6 +429,7 @@ export default async function Home() {
           updateAction={updateRankProgress}
           leaders={leaders}
           scoutUserId={scoutUserId}
+          userRole={viewer.role}
         />
       </div>
     </main>

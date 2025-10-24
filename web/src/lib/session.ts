@@ -7,7 +7,8 @@ import { prisma } from "@/lib/prisma";
 const SESSION_COOKIE = "session_token";
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days in seconds
 
-const hashToken = (token: string) => createHash("sha256").update(token).digest("hex");
+export const hashToken = (token: string) =>
+  createHash("sha256").update(token).digest("hex");
 
 export async function createSession(userId: string, response: NextResponse) {
   const rawToken = randomBytes(32).toString("hex");

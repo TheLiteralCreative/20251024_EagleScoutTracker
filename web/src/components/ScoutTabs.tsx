@@ -123,6 +123,7 @@ type ScoutTabsProps = {
   updateAction: UpdateRankProgressAction;
   leaders: LeaderOption[];
   scoutUserId: string | null;
+  userRole: string;
 };
 
 export function ScoutTabs({
@@ -133,6 +134,7 @@ export function ScoutTabs({
   updateAction,
   leaders,
   scoutUserId,
+  userRole,
 }: ScoutTabsProps) {
   const defaultTab = rankPanels.length > 0 ? `rank:${rankPanels[0].key}` : "next";
   const [activeTab, setActiveTab] = useState<string>(defaultTab);
@@ -191,15 +193,21 @@ export function ScoutTabs({
             <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Council</p>
             <p className="mt-1 font-medium">{scout.council ?? "—"}</p>
           </div>
-          <div className="flex flex-col gap-2">
-            <Link
-              href="/leader"
-              className="inline-flex items-center justify-center rounded-full border border-slate-700/80 bg-slate-900/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-300 transition hover:border-slate-500 hover:bg-slate-800/80"
-            >
-              Leader dashboard
-            </Link>
-            <LogoutButton variant="ghost" />
-          </div>
+          {userRole === "LEADER" ? (
+            <div className="flex flex-col gap-2">
+              <Link
+                href="/leader"
+                className="inline-flex items-center justify-center rounded-full border border-slate-700/80 bg-slate-900/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-300 transition hover:border-slate-500 hover:bg-slate-800/80"
+              >
+                Leader dashboard
+              </Link>
+              <LogoutButton variant="ghost" />
+            </div>
+          ) : (
+            <div className="flex flex-col gap-2">
+              <LogoutButton variant="ghost" />
+            </div>
+          )}
         </div>
       </div>
 
