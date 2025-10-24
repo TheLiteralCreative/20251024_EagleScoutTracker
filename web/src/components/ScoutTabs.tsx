@@ -41,6 +41,37 @@ type ProgressData = {
   approvalComment: string | null;
   notes: string | null;
   updatedAt: string;
+  approvalRequestedLeaderId: string | null;
+  approvalRequestedAt: string | null;
+};
+
+type SubtaskData = {
+  id: string;
+  code: string;
+  title: string;
+  detail: string | null;
+  completedAt: string | null;
+};
+
+type NoteEntryData = {
+  id: string;
+  body: string;
+  createdAt: string;
+  author:
+    | {
+        id: string;
+        firstName: string;
+        lastName: string;
+        initials: string;
+        role: string;
+      }
+    | null;
+};
+
+type LeaderOption = {
+  id: string;
+  label: string;
+  initials: string;
 };
 
 type RankPanel = {
@@ -50,6 +81,8 @@ type RankPanel = {
   requirements: Array<{
     requirement: RequirementData;
     progress: ProgressData | null;
+    subtasks: SubtaskData[];
+    noteEntries: NoteEntryData[];
   }>;
 };
 
@@ -87,6 +120,8 @@ type ScoutTabsProps = {
   nextSteps: NextStepEntry[];
   notesFeed: NotesEntry[];
   updateAction: UpdateRankProgressAction;
+  leaders: LeaderOption[];
+  scoutUserId: string | null;
 };
 
 export function ScoutTabs({
@@ -95,6 +130,8 @@ export function ScoutTabs({
   nextSteps,
   notesFeed,
   updateAction,
+  leaders,
+  scoutUserId,
 }: ScoutTabsProps) {
   const defaultTab = rankPanels.length > 0 ? `rank:${rankPanels[0].key}` : "next";
   const [activeTab, setActiveTab] = useState<string>(defaultTab);
@@ -221,7 +258,7 @@ export function ScoutTabs({
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/60">
-                      {panel.requirements.map(({ requirement, progress }) => {
+                      {panel.requirements.map(({ requirement, progress, subtasks, noteEntries }) => {
                         const progressKey = progress
                           ? `${requirement.id}-${progress.updatedAt}`
                           : `${requirement.id}-new`;
@@ -230,6 +267,10 @@ export function ScoutTabs({
                             key={progressKey}
                             requirement={requirement}
                             progress={progress}
+                            subtasks={subtasks}
+                            noteEntries={noteEntries}
+                            leaders={leaders}
+                            scoutUserId={scoutUserId}
                             scoutId={scout.id}
                             onSubmit={updateAction}
                           />

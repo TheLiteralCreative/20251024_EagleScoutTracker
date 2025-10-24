@@ -94,12 +94,17 @@ model RankProgress {
   approvedAt         DateTime?
   approvedInitials   String?
   approvalComment    String?
+  approvalRequestedAt DateTime?
+  approvalRequestedById String?
+  approvalRequestedLeaderId String?
   createdAt          DateTime     @default(now())
   updatedAt          DateTime     @updatedAt
 
   scout       Scout       @relation(fields: [scoutId], references: [id])
   requirement Requirement @relation(fields: [requirementId], references: [id])
   approvedBy  User?       @relation("LeaderApprovals", fields: [approvedById], references: [id])
+  approvalRequestedBy     User? @relation("RankProgressRequestedBy", fields: [approvalRequestedById], references: [id])
+  approvalRequestedLeader User? @relation("RankProgressRequestedLeader", fields: [approvalRequestedLeaderId], references: [id])
   subtasks    RequirementSubtaskProgress[]
   noteEntries RankProgressNote[]
 
@@ -123,6 +128,8 @@ model User {
   leaderLinks     LeaderScoutLink[]  @relation("LeaderLinks")
   approvedLinks   LeaderScoutLink[]  @relation("ApprovedLinks")
   approvedProgress RankProgress[]    @relation("LeaderApprovals")
+  requestedApprovals RankProgress[]  @relation("RankProgressRequestedBy")
+  leaderApprovalQueue RankProgress[] @relation("RankProgressRequestedLeader")
   auditLogs       AuditLog[]
   updatedSettings Setting[]          @relation("SettingUpdatedBy")
   progressNotes   RankProgressNote[] @relation("RankProgressNoteAuthor")

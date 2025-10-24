@@ -136,6 +136,9 @@ export const updateRankProgress = async (formData: FormData): Promise<ActionResu
         approvedAt: null,
         approvedInitials: null,
         approvalComment: null,
+        approvalRequestedAt: null,
+        approvalRequestedById: null,
+        approvalRequestedLeaderId: null,
       },
       create: {
         scoutId,
@@ -144,6 +147,9 @@ export const updateRankProgress = async (formData: FormData): Promise<ActionResu
         eligibleAt,
         completedAt,
         notes,
+        approvalRequestedAt: null,
+        approvalRequestedById: null,
+        approvalRequestedLeaderId: null,
       },
     });
 

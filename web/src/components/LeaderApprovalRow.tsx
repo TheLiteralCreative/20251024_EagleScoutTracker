@@ -38,6 +38,7 @@ export function LeaderApprovalRow({ leaderId, progress, onApprove, onRevoke }: L
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const requestedOn = progress.approvalRequestedAt;
 
   useEffect(() => {
     if (!message && !error) {
@@ -95,6 +96,7 @@ export function LeaderApprovalRow({ leaderId, progress, onApprove, onRevoke }: L
           <p>Started • {formatDisplayDate(progress.startedAt)}</p>
           <p>Eligible • {formatDisplayDate(progress.eligibleAt)}</p>
           <p>Completed • {formatDisplayDate(progress.completedAt)}</p>
+          {requestedOn && <p>Requested • {formatDisplayDate(requestedOn)}</p>}
         </div>
       </header>
 

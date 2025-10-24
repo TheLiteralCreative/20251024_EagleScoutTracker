@@ -57,6 +57,10 @@ export default async function LeaderDashboard() {
   const pending = await prisma.rankProgress.findMany({
     where: {
       approved: false,
+      approvalRequestedLeaderId: leader.id,
+      approvalRequestedAt: {
+        not: null,
+      },
       scout: {
         leaderLinks: {
           some: {

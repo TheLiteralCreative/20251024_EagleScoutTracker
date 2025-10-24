@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Rank } from "@/generated/prisma/enums";
+import { LinkStatus, Rank } from "@/generated/prisma/enums";
 import { updateRankProgress } from "@/app/actions/update-rank-progress";
 import { prisma } from "@/lib/prisma";
 import { ScoutTabs } from "@/components/ScoutTabs";
@@ -69,6 +69,14 @@ export default async function Home() {
           },
         },
       },
+      leaderLinks: {
+        include: {
+          leader: true,
+        },
+      },
+      user: {
+        select: { id: true },
+      },
     },
     orderBy: { createdAt: "asc" },
   });
@@ -104,6 +112,18 @@ export default async function Home() {
 
   const requirementMap = new Map(requirements.map((req) => [req.id, req]));
 
+  const leaders = scout.leaderLinks
+    .filter((link) => link.status === LinkStatus.APPROVED && link.leader)
+    .map((link) => ({
+      id: link.leaderId,
+      label: `${link.leader!.firstName} ${link.leader!.lastName}`,
+      initials:
+        link.leader!.initials ??
+        `${link.leader!.firstName.at(0) ?? ""}${link.leader!.lastName.at(0) ?? ""}`.toUpperCase(),
+    }));
+
+  const scoutUserId = scout.user?.id ?? null;
+
   const rankPanels = rankOrder
     .map((rank) => {
       const rankRequirements = requirements.filter((requirement) => requirement.rank === rank);
@@ -118,6 +138,36 @@ export default async function Home() {
         color: rankMetadata[rank].color,
         requirements: rankRequirements.map((requirement) => {
           const progress = progressByRequirement.get(requirement.id);
+          const subtaskProgressMap = new Map(
+            progress?.subtasks.map((entry) => [entry.subtaskId, entry]) ?? []
+          );
+          const subtasks = requirement.subtasks.map((subtask) => {
+            const progressEntry = subtaskProgressMap.get(subtask.id);
+            return {
+              id: subtask.id,
+              code: subtask.code,
+              title: subtask.title,
+              detail: subtask.detail ?? null,
+              completedAt: progressEntry?.completedAt?.toISOString() ?? null,
+            };
+          });
+          const noteEntries =
+            progress?.noteEntries.map((note) => ({
+              id: note.id,
+              body: note.body,
+              createdAt: note.createdAt.toISOString(),
+              author: note.author
+                ? {
+                    id: note.author.id,
+                    firstName: note.author.firstName,
+                    lastName: note.author.lastName,
+                    initials:
+                      note.author.initials ??
+                      `${note.author.firstName.at(0) ?? ""}${note.author.lastName.at(0) ?? ""}`.toUpperCase(),
+                    role: note.author.role,
+                  }
+                : null,
+            })) ?? [];
 
           return {
             requirement: {
@@ -143,8 +193,12 @@ export default async function Home() {
                   approvalComment: progress.approvalComment,
                   notes: progress.notes ?? null,
                   updatedAt: progress.updatedAt.toISOString(),
+                  approvalRequestedLeaderId: progress.approvalRequestedLeaderId ?? null,
+                  approvalRequestedAt: progress.approvalRequestedAt?.toISOString() ?? null,
                 }
               : null,
+            subtasks,
+            noteEntries,
           };
         }),
       };
@@ -176,7 +230,30 @@ export default async function Home() {
         approvalComment: string | null;
         notes: string | null;
         updatedAt: string;
+        approvalRequestedLeaderId: string | null;
+        approvalRequestedAt: string | null;
       } | null;
+      subtasks: Array<{
+        id: string;
+        code: string;
+        title: string;
+        detail: string | null;
+        completedAt: string | null;
+      }>;
+      noteEntries: Array<{
+        id: string;
+        body: string;
+        createdAt: string;
+        author:
+          | {
+              id: string;
+              firstName: string;
+              lastName: string;
+              initials: string;
+              role: string;
+            }
+          | null;
+      }>;
     }>;
   }>;
 
@@ -224,12 +301,12 @@ export default async function Home() {
           rank: panel.key,
           rankLabel: panel.label,
           requirement,
-          progress: progress
-            ? {
-                startedAt: progress.startedAt,
-                eligibleAt: progress.eligibleAt,
-                completedAt: progress.completedAt,
-              }
+              progress: progress
+                ? {
+                    startedAt: progress.startedAt,
+                    eligibleAt: progress.eligibleAt,
+                    completedAt: progress.completedAt,
+                  }
             : null,
           messages,
           priority,
@@ -334,6 +411,8 @@ export default async function Home() {
           nextSteps={nextStepsTop}
           notesFeed={notesFeed}
           updateAction={updateRankProgress}
+          leaders={leaders}
+          scoutUserId={scoutUserId}
         />
       </div>
     </main>

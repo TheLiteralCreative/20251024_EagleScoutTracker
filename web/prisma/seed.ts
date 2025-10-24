@@ -402,6 +402,9 @@ async function main() {
       approved: false,
       approvedInitials: null,
       notes: "Needs refresher on sanitation rinse sequence.",
+      approvalRequestedAt: new Date("2024-03-01"),
+      approvalRequestedById: scoutUser.id,
+      approvalRequestedLeaderId: leaderUser.id,
     },
     {
       code: "TF-2c",
@@ -420,6 +423,9 @@ async function main() {
       approved: false,
       approvedInitials: null,
       notes: "Needs to re-demo knot tying.",
+      approvalRequestedAt: new Date("2024-03-20"),
+      approvalRequestedById: scoutUser.id,
+      approvalRequestedLeaderId: leaderUser.id,
     },
     {
       code: "TF-3b",
@@ -503,6 +509,9 @@ async function main() {
       approved: false,
       approvedInitials: null,
       notes: "Following 30-day fitness plan; log updated weekly.",
+      approvalRequestedAt: null,
+      approvalRequestedById: null,
+      approvalRequestedLeaderId: null,
     },
     {
       code: "TF-6c",
@@ -558,6 +567,9 @@ async function main() {
         approvedAt: progress.approvedAt ?? undefined,
         approvedInitials: progress.approvedInitials ?? undefined,
         notes: progress.notes ?? undefined,
+        approvalRequestedAt: progress.approvalRequestedAt ?? null,
+        approvalRequestedById: progress.approvalRequestedById ?? null,
+        approvalRequestedLeaderId: progress.approvalRequestedLeaderId ?? null,
       },
       create: {
         scoutId: scout.id,
@@ -570,6 +582,9 @@ async function main() {
         approvedAt: progress.approvedAt ?? undefined,
         approvedInitials: progress.approvedInitials ?? undefined,
         notes: progress.notes ?? undefined,
+        approvalRequestedAt: progress.approvalRequestedAt ?? null,
+        approvalRequestedById: progress.approvalRequestedById ?? null,
+        approvalRequestedLeaderId: progress.approvalRequestedLeaderId ?? null,
       },
     });
 
