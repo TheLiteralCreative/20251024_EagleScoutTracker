@@ -93,12 +93,12 @@ const toInputDate = (value?: string | null) => {
   return date.toISOString().slice(0, 10);
 };
 
-const formatDisplayDate = (value?: string | null) => {
+const formatDisplayDate = (value?: string | Date | null) => {
   if (!value) {
     return "—";
   }
 
-  const date = new Date(value);
+  const date = value instanceof Date ? value : new Date(value);
   if (Number.isNaN(date.getTime())) {
     return "—";
   }
@@ -107,7 +107,7 @@ const formatDisplayDate = (value?: string | null) => {
     year: "numeric",
     month: "short",
     day: "2-digit",
-  }).format(value);
+  }).format(date);
 };
 
 const calculateEligiblePreview = (
